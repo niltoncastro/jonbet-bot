@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="b5757c30-5020-4f9b-991f-d4c99e48c4e2" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../../.idea/workspace.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../jonbet-bot/.idea/jonbet-bot.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../jonbet-bot/data_processing.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../jonbet-bot/db_utils.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../jonbet-bot/display_utils.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../jonbet-bot/file_utils.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../jonbet-bot/liga-venezuela.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../jonbet-bot/liga-venezuela_old.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../jonbet-bot/main.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../jonbet-bot/web_utils.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jonbet-develop.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../algacrm-api/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../algacrm-api/.mvn/wrapper/MavenWrapperDownloader.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../algacrm-api/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../algacrm-api/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../algacrm-api/mvnw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../algacrm-api/mvnw.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../algacrm-api/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../algacrm-api/src/main/java/com/algaworks/AlgacrmApiApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../algacrm-api/src/main/java/com/algaworks/crm/controller/ClienteController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../algacrm-api/src/main/java/com/algaworks/crm/model/Cliente.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../algacrm-api/src/main/java/com/algaworks/crm/repository/ClienteRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../algacrm-api/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../algacrm-api/src/test/java/com/algaworks/AlgacrmApiApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../loterias-api/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../loterias-api/.mvn/wrapper/MavenWrapperDownloader.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../loterias-api/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../loterias-api/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../loterias-api/mvnw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../loterias-api/mvnw.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../loterias-api/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../loterias-api/src/main/java/com/loterias/ProjetojbApi1Application.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../loterias-api/src/main/java/com/loterias/controller/SorteioController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../loterias-api/src/main/java/com/loterias/model/Grupo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../loterias-api/src/main/java/com/loterias/model/Resultado.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../loterias-api/src/main/java/com/loterias/model/Sorteio.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../loterias-api/src/main/java/com/loterias/repository/ResultadoRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../loterias-api/src/main/java/com/loterias/repository/SorteioRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../loterias-api/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../loterias-api/src/test/java/com/forall/ProjetojbApi1ApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../nutrition-master/.classpath" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../nutrition-master/.project" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../nutrition-master/.settings/org.eclipse.core.resources.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../nutrition-master/.settings/org.eclipse.jdt.apt.core.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../nutrition-master/.settings/org.eclipse.jdt.core.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../nutrition-master/.settings/org.eclipse.m2e.core.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../nutrition-master/.settings/org.eclipse.wst.common.project.facet.core.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../nutrition-master/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../nutrition-master/bin/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../nutrition-master/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../nutrition-master/src/main/java/br/com/nutrition/NutritionApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../nutrition-master/src/main/java/br/com/nutrition/controller/NutricionistaController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../nutrition-master/src/main/java/br/com/nutrition/datasource/model/Nutricionista.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../nutrition-master/src/main/java/br/com/nutrition/exception/NutricionistaNotFoundException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../nutrition-master/src/main/java/br/com/nutrition/exception/NutricionistaResourceException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../nutrition-master/src/main/java/br/com/nutrition/repository/NutricionistaRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../nutrition-master/src/main/java/br/com/nutrition/resource/model/NutricionistaResource.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../nutrition-master/src/main/java/br/com/nutrition/service/BuscarNutricionistaPorIdServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../nutrition-master/src/main/java/br/com/nutrition/service/BuscarNutricionistasServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../nutrition-master/src/main/java/br/com/nutrition/service/CadastroNutricionistaServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../nutrition-master/src/main/java/br/com/nutrition/service/NutricionistaConversor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../nutrition-master/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../nutrition-master/src/main/resources/sql/delete_nutricionistas.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../nutrition-master/src/main/resources/sql/insert_nutri_buscar_todos_os_nutri.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../nutrition-master/src/main/resources/sql/insert_nutri_para_test_buscar_por_id.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../nutrition-master/src/test/java/br/com/nutrition/NutritionApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../nutrition-master/src/test/java/br/com/nutrition/service/BuscarNutricionistaPorIdServiceImplTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../nutrition-master/src/test/java/br/com/nutrition/service/BuscarNutricionistasServiceImplTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../nutrition-master/src/test/java/br/com/nutrition/service/CadastroNutricionistaServiceImplTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../nutrition-master/target/classes/META-INF/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../nutrition-master/target/classes/META-INF/maven/br.com.nutrition/nutrition/pom.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../nutrition-master/target/classes/META-INF/maven/br.com.nutrition/nutrition/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../nutrition-master/target/classes/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../nutrition-master/target/classes/br/com/nutrition/NutritionApplication.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../nutrition-master/target/classes/br/com/nutrition/controller/NutricionistaController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../nutrition-master/target/classes/br/com/nutrition/datasource/model/Nutricionista.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../nutrition-master/target/classes/br/com/nutrition/exception/NutricionistaNotFoundException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../nutrition-master/target/classes/br/com/nutrition/exception/NutricionistaResourceException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../nutrition-master/target/classes/br/com/nutrition/repository/NutricionistaRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../nutrition-master/target/classes/br/com/nutrition/resource/model/NutricionistaResource.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../nutrition-master/target/classes/br/com/nutrition/service/BuscarNutricionistaPorIdServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../nutrition-master/target/classes/br/com/nutrition/service/BuscarNutricionistasServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../nutrition-master/target/classes/br/com/nutrition/service/CadastroNutricionistaServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../nutrition-master/target/classes/br/com/nutrition/service/NutricionistaConversor.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../nutrition-master/target/classes/sql/delete_nutricionistas.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../nutrition-master/target/classes/sql/insert_nutri_buscar_todos_os_nutri.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../nutrition-master/target/classes/sql/insert_nutri_para_test_buscar_por_id.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../nutrition-master/target/maven-archiver/pom.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../nutrition-master/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../nutrition-master/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../nutrition-master/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../nutrition-master/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../nutrition-master/target/nutrition-0.0.1-SNAPSHOT.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../nutrition-master/target/nutrition-0.0.1-SNAPSHOT.jar.original" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../nutrition-master/target/surefire-reports/TEST-br.com.nutrition.NutritionApplicationTests.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../nutrition-master/target/surefire-reports/TEST-br.com.nutrition.service.BuscarNutricionistaPorIdServiceImplTest.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../nutrition-master/target/surefire-reports/TEST-br.com.nutrition.service.BuscarNutricionistasServiceImplTest.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../nutrition-master/target/surefire-reports/TEST-br.com.nutrition.service.CadastroNutricionistaServiceImplTest.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../nutrition-master/target/surefire-reports/br.com.nutrition.NutritionApplicationTests.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../nutrition-master/target/surefire-reports/br.com.nutrition.service.BuscarNutricionistaPorIdServiceImplTest.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../nutrition-master/target/surefire-reports/br.com.nutrition.service.BuscarNutricionistasServiceImplTest.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../nutrition-master/target/surefire-reports/br.com.nutrition.service.CadastroNutricionistaServiceImplTest.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../nutrition-master/target/test-classes/br/com/nutrition/NutritionApplicationTests.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../nutrition-master/target/test-classes/br/com/nutrition/service/BuscarNutricionistaPorIdServiceImplTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../nutrition-master/target/test-classes/br/com/nutrition/service/BuscarNutricionistasServiceImplTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../nutrition-master/target/test-classes/br/com/nutrition/service/CadastroNutricionistaServiceImplTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/ccm/hotfolder/application/ProcessFile.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/ccm/hotfolder/domain/BoletoSaude.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/ccm/hotfolder/file/Operators.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/org/example/App.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/test/java/org/example/AppTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../target/classes/com/ccm/hotfolder/application/ProcessFile.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../target/classes/com/ccm/hotfolder/domain/BoletoSaude.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../target/classes/com/ccm/hotfolder/file/Operators.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../target/classes/org/example/App.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../target/test-classes/org/example/AppTest.class" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2pJlhvRY2QslbHWIGu8Wb15GKvG" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b5757c30-5020-4f9b-991f-d4c99e48c4e2" name="Changes" comment="" />
+      <created>1732492181197</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1732492181197</updated>
+    </task>
+    <servers />
+  </component>
+</project>
