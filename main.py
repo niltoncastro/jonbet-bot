@@ -16,6 +16,7 @@ firefox_options.add_argument(f"--profile={profile_path}")  # Usar o perfil diret
 # Inicializar o Firefox com o perfil existente
 driver = webdriver.Firefox(service=webdriver_service, options=firefox_options)
 
+
 try:
     driver.get("https://jonbet.com/pt/sports?bt-path=%2Ffifa%2Fvenezuela%2Fliga-futve-2361937986599399439")
     print("Firefox iniciado com o perfil existente!")
