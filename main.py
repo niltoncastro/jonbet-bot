@@ -34,27 +34,14 @@ def get_links_from_html(html_source):
         for link in soup.find_all('link', href=True):
             if "2359744937144225792" in link['href'].lower():
                 links.append(link['href'])
-                download_and_process_live_json(link['href'])
+                process_tournament(link['href'])
         return links
     except Exception as e:
         display_message(f"Erro ao processar o HTML: {str(e)}")
         return []
 
 
-def salvar_json(prefix, codigo, data):
-    """Salva o JSON formatado em um arquivo."""
-    try:
-        directory = "C:/Users/junio/Desktop/temp/log-jonbet"
-        os.makedirs(directory, exist_ok=True)
-        file_path = os.path.join(directory, f"{prefix}_{codigo}.json")
-        with open(file_path, "w", encoding="utf-8") as json_file:
-            json.dump(data, json_file, ensure_ascii=False, indent=4)
-        display_message(f"Arquivo salvo: {file_path}")
-    except Exception as e:
-        display_message(f"Erro ao salvar arquivo JSON: {str(e)}")
-
-
-def processar_estado_jogo(event, event_id):
+def process_steps_game(event, event_id):
     """Processa os estados do jogo a partir do arquivo 'live'."""
     global proxima_partida, estado_partida, codigo_partida, home_team, away_team, home_score, away_score, placar_anterior
 
@@ -70,7 +57,6 @@ def processar_estado_jogo(event, event_id):
                 time1 = competitors[0].get("name", "Time1 desconhecido")
                 time2 = competitors[1].get("name", "Time2 desconhecido")
                 display_message(f"Partida agendada. Código: {event_id} - {time1} x {time2}")
-                salvar_json("prematch", event_id, event)
 
     # Aguardando início da partida (AI)
     if match_status == 20 and estado_partida != "AI":
@@ -135,7 +121,7 @@ def processar_estado_jogo(event, event_id):
         print("---------------------------------------------------------------------------------------------")
 
 
-def download_and_process_live_json(url):
+def process_tournament(url):
     """Faz download do JSON 'live' e processa os estados do jogo."""
     try:
         response = requests.get(url)
@@ -145,8 +131,7 @@ def download_and_process_live_json(url):
 
             for key, value in events.items():
                 if value.get("desc", {}).get("tournament") == "2361937986599399439":
-                    processar_estado_jogo(value, key)
-
+                    process_steps_game(value, key)
         else:
             display_message(f"Erro ao acessar {url}, status code: {response.status_code}")
     except Exception as e:
