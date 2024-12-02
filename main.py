@@ -8,8 +8,15 @@ from selenium.webdriver.firefox.options import Options
 import requests
 import json
 
-# Variável global para armazenar o código da próxima partida
+# Variáveis globais
 proxima_partida = None
+estado_partida = None
+codigo_partida = None
+home_team = None
+away_team = None
+home_score = 0
+away_score = 0
+placar_anterior = (0, 0)
 
 
 def display_message(message):
@@ -25,76 +32,120 @@ def get_links_from_html(html_source):
         soup = BeautifulSoup(html_source, 'html.parser')
         links = []
         for link in soup.find_all('link', href=True):
-            if "2359744937144225792" in link['href'] and "prematch" in link['href'].lower():
+            if "2359744937144225792" in link['href'].lower():
                 links.append(link['href'])
-                download_and_save_json(link['href'])  # Baixar e salvar o JSON
+                download_and_process_live_json(link['href'])
         return links
     except Exception as e:
         display_message(f"Erro ao processar o HTML: {str(e)}")
         return []
 
 
-def salvar_dados_proxima_partida(json_content):
-    """Salva os dados da próxima partida se atender às condições."""
-    global proxima_partida
-
-    events = json_content.get("events", {})
-    for key, value in events.items():
-        if isinstance(value, dict):
-            match_status = value.get("state", {}).get("match_status")
-            tournament = value.get("desc", {}).get("tournament")
-            competitors = value.get("desc", {}).get("competitors")
-            codigo = key
-
-            # Condição: "match_status": 0, torneio correto e código da partida é diferente
-            if (
-                match_status == 0 and
-                tournament == "2361937986599399439" and  # Filtra apenas o torneio correto
-                (not proxima_partida or codigo != proxima_partida)
-            ):
-                proxima_partida = codigo  # Atualiza o código da próxima partida
-                if competitors and len(competitors) == 2:
-                    time1 = competitors[0].get("name", "Time1 desconhecido")
-                    time2 = competitors[1].get("name", "Time2 desconhecido")
-                    display_message(f"Partida agendada. Código: {codigo} - {time1} x {time2}")
-                    return {codigo: value}  # Retorna apenas o objeto do torneio
-                else:
-                    display_message(f"Dados inconsistentes para a próxima partida no código: {codigo}")
-                break  # Para garantir que apenas o primeiro objeto seja considerado
-    return None
+def salvar_json(prefix, codigo, data):
+    """Salva o JSON formatado em um arquivo."""
+    try:
+        directory = "C:/Users/junio/Desktop/temp/log-jonbet"
+        os.makedirs(directory, exist_ok=True)
+        file_path = os.path.join(directory, f"{prefix}_{codigo}.json")
+        with open(file_path, "w", encoding="utf-8") as json_file:
+            json.dump(data, json_file, ensure_ascii=False, indent=4)
+        display_message(f"Arquivo salvo: {file_path}")
+    except Exception as e:
+        display_message(f"Erro ao salvar arquivo JSON: {str(e)}")
 
 
-def download_and_save_json(url):
-    """Faz download do JSON e salva os dados relevantes."""
+def processar_estado_jogo(event, event_id):
+    """Processa os estados do jogo a partir do arquivo 'live'."""
+    global proxima_partida, estado_partida, codigo_partida, home_team, away_team, home_score, away_score, placar_anterior
+
+    # Primeira etapa: salvar dados da próxima partida
+    match_status = event.get("state", {}).get("match_status")
+    tournament = event.get("desc", {}).get("tournament")
+    competitors = event.get("desc", {}).get("competitors")
+
+    if match_status == 0 and tournament == "2361937986599399439":
+        if not proxima_partida or event_id != proxima_partida:
+            proxima_partida = event_id
+            if competitors and len(competitors) == 2:
+                time1 = competitors[0].get("name", "Time1 desconhecido")
+                time2 = competitors[1].get("name", "Time2 desconhecido")
+                display_message(f"Partida agendada. Código: {event_id} - {time1} x {time2}")
+                salvar_json("prematch", event_id, event)
+
+    # Aguardando início da partida (AI)
+    if match_status == 20 and estado_partida != "AI":
+        estado_partida = "AI"
+        codigo_partida = event_id
+        if competitors and len(competitors) == 2:
+            home_team = competitors[0].get("name", "Time casa")
+            away_team = competitors[1].get("name", "Time visitante")
+            display_message(f"Aguardando início da partida. Código: {codigo_partida} - {home_team} x {away_team}")
+
+    # Início do primeiro tempo (1T)
+    elif match_status == 6 and estado_partida == "AI":
+        estado_partida = "1T"
+        home_score = int(event.get("score", {}).get("home_score", 0))
+        away_score = int(event.get("score", {}).get("away_score", 0))
+        placar_anterior = (home_score, away_score)
+        display_message(f"Iniciou o primeiro tempo da partida. Código: {codigo_partida} - "
+                        f"{home_team} {home_score} x {away_score} {away_team}")
+
+    # Início do segundo tempo (2T)
+    elif match_status == 7 and estado_partida == "1T":
+        estado_partida = "2T"
+        display_message(f"Iniciou o segundo tempo da partida. Código: {codigo_partida} - "
+                        f"{home_team} {home_score} x {away_score} {away_team}")
+
+    # Atualização do jogo (1T ou 2T)
+    elif match_status != 100 and estado_partida in ["1T", "2T"]:
+        novo_home_score = int(event.get("score", {}).get("home_score", home_score))
+        novo_away_score = int(event.get("score", {}).get("away_score", away_score))
+
+        if (novo_home_score, novo_away_score) != placar_anterior:
+            placar_anterior = (novo_home_score, novo_away_score)
+
+            if novo_home_score != home_score:
+                home_score = novo_home_score
+                display_message(
+                    f"GOL do {home_team} - tempo: {event.get('state', {}).get('clock', {}).get('match_time', '00:00')}")
+            if novo_away_score != away_score:
+                away_score = novo_away_score
+                display_message(
+                    f"GOL do {away_team} - tempo: {event.get('state', {}).get('clock', {}).get('match_time', '00:00')}")
+
+            display_message(f"Placar: {home_team} {home_score} x {away_score} {away_team}")
+
+    # Finalização do jogo (PF)
+    elif match_status == 100 and estado_partida == "2T":
+        estado_partida = "PF"
+        placar_final = (home_score, away_score)
+        virada = "N"
+
+        period_scores = event.get("score", {}).get("period_scores", [])
+        primeiro_tempo = next((p for p in period_scores if p.get("match_status_code") == 6), {})
+        home_1T = int(primeiro_tempo.get("home_score", 0))
+        away_1T = int(primeiro_tempo.get("away_score", 0))
+
+        if (home_1T < away_1T and home_score > away_score) or (away_1T < home_1T and away_score > home_score):
+            virada = "S"
+            display_message(f"{home_team if home_score > away_score else away_team} venceu de virada!")
+
+        display_message(f"Fim da Partida. Código: {codigo_partida} - "
+                        f"Placar final: {home_team} {home_score} x {away_score} {away_team}. Virada: {virada}")
+        print("---------------------------------------------------------------------------------------------")
+
+
+def download_and_process_live_json(url):
+    """Faz download do JSON 'live' e processa os estados do jogo."""
     try:
         response = requests.get(url)
         if response.status_code == 200:
-            prefix = "prematch_"
-            file_name = prefix + url.split("/")[-1] + ".json"
-            file_path = os.path.join("C:/Users/junio/Desktop/temp/log-jonbet", file_name)
-
             json_content = response.json()
             events = json_content.get("events", {})
 
-            # Filtra os dados do torneio e salva apenas se houver alteração ou na primeira execução
-            if events:
-                salvar_dados = None
-                for key, value in events.items():
-                    if (
-                        isinstance(value, dict) and
-                        value.get("state", {}).get("match_status") == 0 and
-                        value.get("desc", {}).get("tournament") == "2361937986599399439"
-                    ):
-                        salvar_dados = {key: value}  # Salva apenas o objeto relevante
-                        break  # Considera apenas o primeiro objeto
-
-                if salvar_dados and (not proxima_partida or key != proxima_partida):
-                    with open(file_path, "w", encoding="utf-8") as f:
-                        json.dump(salvar_dados, f, ensure_ascii=False, indent=4)
-                    # display_message(f"Arquivo prematch salvo com sucesso: {file_path}")
-
-                    # Atualiza a próxima partida
-                    salvar_dados_proxima_partida({"events": salvar_dados})
+            for key, value in events.items():
+                if value.get("desc", {}).get("tournament") == "2361937986599399439":
+                    processar_estado_jogo(value, key)
 
         else:
             display_message(f"Erro ao acessar {url}, status code: {response.status_code}")
