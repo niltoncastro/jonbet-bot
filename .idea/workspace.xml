@@ -5,7 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bebee0ec-0c15-4983-ac3c-f2b4d466caa0" name="Changes" comment="teste">
+      <change afterPath="$PROJECT_DIR$/access_url.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/display_message.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/get_links_from_html.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mappings.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/process_steps_game.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/process_tournament.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/firefox_utils.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -33,6 +40,9 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2pJlhvRY2QslbHWIGu8Wb15GKvG" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -93,7 +103,21 @@
       <option name="project" value="LOCAL" />
       <updated>1733098118916</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="teste">
+      <created>1733181052891</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1733181052892</updated>
+    </task>
+    <task id="LOCAL-00003" summary="teste">
+      <created>1733181366361</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1733181366361</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
