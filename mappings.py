@@ -1,17 +1,25 @@
-def format_team_name(var):
-    name_mapping = {
+def format_team_name(parameter):
+    mapping = {
         "Dep. Táchira": "Tachira",
         "Dep. La Guaira": "Guaira",
-        "Caracas F.C": "Caracas",
+        "Caracas F.C.": "Caracas"
     }
-    return name_mapping.get(var, var)
+    return mapping.get(parameter, parameter)
 
 
-def description_league(var):
-    description_mapping = {
-        "Dep. Táchira": "Tachira",
-        "Dep. La Guaira": "Guaira",
-        "Caracas F.C": "Caracas",
+def league_name(parameter):
+    mapping = {
+        "2361937986599399439": "Venezuela"
     }
-    return description_mapping.get(var, var)
 
+    return mapping.get(parameter, parameter)
+
+
+def state_description(parameter):
+    mapping = {
+        "AI": "Aguardando Inicio",
+        "1T": "Primeiro Tempo",
+        "2T": "Segundo Tempo",
+        "PF": "Partida Finalizada"
+    }
+    return mapping.get(parameter, parameter)
