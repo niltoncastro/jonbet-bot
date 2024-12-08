@@ -28,6 +28,8 @@ def access_url(url):
         try:
             html_source = driver.page_source
             get_links_from_html(html_source)
+
+
         except Exception as e:
             display_message(f"Erro durante a execução principal: {str(e)}")
     driver.quit()

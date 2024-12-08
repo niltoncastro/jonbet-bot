@@ -4,9 +4,8 @@ from display_message import display_message
 from process_steps_game import process_steps_game
 
 
-def process_tournament(url):
+def process_tournament(url, codigo_liga):
     """Faz download do JSON 'live' e processa os estados do jogo."""
-    codigo_liga = "2361937986599399439"
 
     try:
         response = requests.get(url)

@@ -2,39 +2,47 @@ from datetime import datetime
 
 from db_utils import insert_resultado
 from display_message import display_message
-from mappings import format_team_name, state_description
+from mappings import format_team_name, state_description, table_name
 from mappings import league_name
+from save_resultado_planilha import save_planlha_resultado_final
 
 # Variáveis globais
 codigo_partida_agendada = None
 codigo_partida_atual = None
+data_criacao = None
+data_partida = None
+descricao_estado_partida = None
+descricao_resultado = None
+flg_atualiza_banco = None
+flg_final = None
+flg_virada = None
+placar_casa_1T = None
+placar_casa_2T = None
+placar_visitante_1T = None
+placar_visitante_2T = None
+placar_atualizado_1T = None
+placar_atualizado_2T = None
+placar_casa = "0"
+placar_visitante = "0"
+placar_final = None
+resultado_partida = None
+sigla_estado_partida = None
+tempo_partida = None
+tipo_resultado = None
 time_casa = None
 time_casa_agendado = None
 time_visitante = None
 time_visitante_agendado = None
-placar_casa = "0"
-placar_visitante = "0"
-placar_anterior = (0, 0)
-sigla_estado_partida = None
-tempo_partida = None
-descricao_estado_partida = None
-data_partida = None
-data_criacao = None
-placar_1T = None
-placar_2T = None
-flg_final = None
-tipo_resultado = None
-descricao_resultado = None
-resultado_partida = None
-flg_virada = None
-flg_atualiza_banco = "N"
+time_vencendo = None
 
 
 def process_steps_game(evento, codigo_partida, codigo_liga):
     """Processa os estados do jogo a partir do arquivo 'live'."""
-    global codigo_partida_agendada, codigo_partida_atual, time_casa, time_casa_agendado, time_visitante, time_visitante_agendado, placar_casa, \
-        placar_visitante, placar_anterior, sigla_estado_partida, tempo_partida, descricao_estado_partida, data_partida, data_criacao, placar_1T, \
-        placar_2T, flg_final, tipo_resultado, descricao_resultado, resultado_partida, flg_virada, flg_atualiza_banco
+    global codigo_partida_agendada, codigo_partida_atual, data_criacao, data_partida, descricao_estado_partida, \
+        descricao_resultado, flg_atualiza_banco, flg_final, flg_virada, placar_atualizado_1T, placar_atualizado_2T, \
+        placar_casa, placar_casa_1T, placar_casa_2T, placar_final, placar_visitante, placar_visitante_1T, \
+        placar_visitante_2T, resultado_partida, sigla_estado_partida, tempo_partida, time_casa, time_casa_agendado, \
+        time_visitante, time_visitante_agendado, tipo_resultado, time_vencendo
 
     data_partida = datetime.now().strftime('%d/%m/%Y %H:%M:%S')
     data_criacao = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
@@ -42,15 +50,34 @@ def process_steps_game(evento, codigo_partida, codigo_liga):
     nome_liga = league_name(codigo_liga)
     times = evento.get("desc", {}).get("competitors")
     tempo_partida = evento.get('state', {}).get('clock', {}).get('match_time', '00:00')
+    flg_atualiza_banco = "N"
 
     # 1_Aguardando início da partida [AI]
     if match_status == 20 and (sigla_estado_partida == "PF" or not sigla_estado_partida):
+        # Reset de variaveis
+        flg_atualiza_banco = "N"
+        flg_virada = None
+        flg_final = None
+        placar_casa_1T = None
+        placar_casa_2T = None
+        placar_visitante_1T = None
+        placar_visitante_2T = None
+        placar_atualizado_1T = None
+        placar_atualizado_2T = None
+        placar_casa = "0"
+        placar_visitante = "0"
+        placar_final = None
+        flg_virada = None
+        tipo_resultado = None
+        descricao_resultado = None
+        resultado_partida = None
+
         sigla_estado_partida = "AI"
+
         descricao_estado_partida = state_description(sigla_estado_partida)
         codigo_partida_atual = codigo_partida
         time_casa = format_team_name(times[0].get("name", "time_casa"))
         time_visitante = format_team_name(times[1].get("name", "Time visitante"))
-        flg_atualiza_banco = "S"
 
         display_message(
             f"Aguardando início da partida. Código: {codigo_partida_atual} - {time_casa} x {time_visitante}")
@@ -73,10 +100,8 @@ def process_steps_game(evento, codigo_partida, codigo_liga):
     if match_status == 6 and sigla_estado_partida == "PA":
         sigla_estado_partida = "1T"
         descricao_estado_partida = state_description(sigla_estado_partida)
-        placar_casa = int(evento.get("score", {}).get("home_score", 0))
-        placar_visitante = int(evento.get("score", {}).get("away_score", 0))
-        placar_1T = f"{placar_casa}x{placar_visitante}"
         flg_atualiza_banco = "S"
+        placar_atualizado_1T = "0x0"
 
         display_message(
             f"Iniciou o primeiro tempo da partida. "f"{time_casa} {placar_casa} x {placar_visitante} {time_visitante}")
@@ -85,29 +110,52 @@ def process_steps_game(evento, codigo_partida, codigo_liga):
     if match_status == 7 and sigla_estado_partida == "1T":
         sigla_estado_partida = "2T"
         descricao_estado_partida = state_description(sigla_estado_partida)
+        placar_atualizado_2T = "0x0"
         flg_atualiza_banco = "S"
-
         display_message(
             f"Iniciou o segundo tempo da partida. "f"{time_casa} {placar_casa} x {placar_visitante} {time_visitante}")
 
     # 5_Atualização da partida [1T ou 2T]
     if match_status != 100 and sigla_estado_partida in ["1T", "2T"]:
-        placar_casa_atual = int(evento.get("score", {}).get("home_score", placar_casa))
-        placar_visitante_atual = int(evento.get("score", {}).get("away_score", placar_visitante))
+        placar_casa_novo = evento.get("score", {}).get("home_score", placar_casa)
+        placar_visitante_novo = evento.get("score", {}).get("away_score", placar_visitante)
 
-        if (placar_casa_atual, placar_visitante_atual) != (placar_casa, placar_visitante):
-            placar_anterior = (placar_casa_atual, placar_visitante_atual)
+        # Verificacao de Gol
+        if placar_casa_novo > placar_casa or placar_visitante_novo > placar_visitante:
             flg_atualiza_banco = "S"
-            if placar_casa_atual != placar_casa:
-                placar_casa = placar_casa_atual
+            if placar_casa_novo > placar_casa:
+                placar_casa = placar_casa_novo
                 descricao_estado_partida = f"GOL do {time_casa}"
                 display_message(
                     f"GOL do {time_casa} - tempo: {tempo_partida}")
-            if placar_visitante_atual != placar_visitante:
-                placar_visitante = placar_visitante_atual
-                descricao_estado_partida = f"GOL do {time_casa}"
+            if placar_visitante_novo > placar_visitante:
+                placar_visitante = placar_visitante_novo
+                descricao_estado_partida = f"GOL do {time_visitante}"
                 display_message(
                     f"GOL do {time_visitante} - tempo: {tempo_partida}")
+
+            # Regra para Virada
+            if placar_casa_novo == 1 and not placar_casa_novo:
+                time_vencendo = format_team_name(times[0].get("name", "time_casa"))
+
+            if placar_visitante_novo == 1 and not placar_casa_novo:
+                time_vencendo = format_team_name(times[1].get("name", "Time visitante"))
+
+            # Atualizacao do placar do primeiro tempo
+            if sigla_estado_partida == "1T":
+                period_scores = evento.get("score", {}).get("period_scores", [])
+                placar_objeto_1T = next((p for p in period_scores if p.get("match_status_code") == 6), {})
+                placar_casa_1T = placar_objeto_1T.get("home_score", 0)
+                placar_visitante_1T = placar_objeto_1T.get("away_score", 0)
+                placar_atualizado_1T = f"{placar_casa_1T}x{placar_visitante_1T}"
+
+            # Atualizacao do placar do primeiro tempo
+            if sigla_estado_partida == "2T":
+                period_scores = evento.get("score", {}).get("period_scores", [])
+                placar_objeto_2T = next((p for p in period_scores if p.get("match_status_code") == 7), {})
+                placar_casa_2T = placar_objeto_2T.get("home_score", 0)
+                placar_visitante_2T = placar_objeto_2T.get("away_score", 0)
+                placar_atualizado_2T = f"{placar_casa_2T}x{placar_visitante_2T}"
 
             display_message(f"Placar: {time_casa} {placar_casa} x {placar_visitante} {time_visitante}")
 
@@ -115,30 +163,30 @@ def process_steps_game(evento, codigo_partida, codigo_liga):
     if match_status == 100 and sigla_estado_partida == "2T":
         sigla_estado_partida = "PF"
         descricao_estado_partida = state_description(sigla_estado_partida)
+        tempo_partida = None
         flg_final = "S"
         flg_virada = "N"
-        period_scores = evento.get("score", {}).get("period_scores", [])
-        primeiro_tempo = next((p for p in period_scores if p.get("match_status_code") == 6), {})
-        home_1T = int(primeiro_tempo.get("home_score", 0))
-        away_1T = int(primeiro_tempo.get("away_score", 0))
         flg_atualiza_banco = "S"
 
-        if (home_1T < away_1T and placar_casa > placar_visitante) or (
-                away_1T < home_1T and placar_visitante > placar_casa):
-            flg_virada = "S"
-            display_message(f"{time_casa if placar_casa > placar_visitante else time_visitante} venceu de virada!")
-
         if placar_casa > placar_visitante:
-            tipo_resultado = 'CASA'
+            tipo_resultado = '1'
+            descricao_resultado = "Casa"
             resultado_partida = time_casa
 
-        if placar_casa > placar_visitante:
-            tipo_resultado = 'VISITANTE'
+        if placar_casa == placar_visitante:
+            tipo_resultado = '2'
+            descricao_resultado = "Empate"
+            resultado_partida = "Empate"
+
+        if placar_casa < placar_visitante:
+            tipo_resultado = '3'
+            descricao_resultado = "Visitante"
             resultado_partida = time_visitante
 
-        if placar_casa == placar_visitante:
-            tipo_resultado = 'EMPATE'
-            resultado_partida = "EMPATE"
+        if resultado_partida not in ['Empate', time_vencendo]:
+            flg_virada = "S"
+
+        placar_final = f"{placar_casa}x{placar_visitante}"
 
         display_message(f"Fim da Partida. Código: {codigo_partida_atual} - "
                         f"Placar final: {time_casa} {placar_casa} x {placar_visitante} {time_visitante}. Virada: {flg_virada}")
@@ -146,7 +194,9 @@ def process_steps_game(evento, codigo_partida, codigo_liga):
 
     # ATUALIZACAO DO BANCO DE DADOS
     if flg_atualiza_banco == "S":
+        save_planlha_resultado_final(time_casa, placar_casa, time_visitante, placar_visitante, table_name(codigo_liga))
+
         insert_resultado(codigo_partida, codigo_liga, nome_liga, time_casa, placar_casa, time_visitante,
-                         placar_visitante, tempo_partida, placar_1T, placar_2T, sigla_estado_partida,
-                         descricao_estado_partida, flg_final, tipo_resultado, descricao_resultado,
-                         resultado_partida, flg_virada, data_partida, data_criacao)
+                         placar_visitante, tempo_partida, placar_atualizado_1T, placar_atualizado_2T,
+                         sigla_estado_partida, descricao_estado_partida, placar_final, flg_final, tipo_resultado,
+                         descricao_resultado, resultado_partida, flg_virada, data_partida, data_criacao)

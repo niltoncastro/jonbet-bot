@@ -4,9 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bebee0ec-0c15-4983-ac3c-f2b4d466caa0" name="Changes" comment="refactory">
-      <change afterPath="$PROJECT_DIR$/db_utils.py" afterDir="false" />
+    <list default="true" id="bebee0ec-0c15-4983-ac3c-f2b4d466caa0" name="Changes" comment="insercao no banco de dados">
+      <change afterPath="$PROJECT_DIR$/copy_file.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/save_resultado_planilha.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../jonbet-bot/liga-venezuela_old.py" beforeDir="false" afterPath="$PROJECT_DIR$/../jonbet-bot/liga-venezuela_old.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/access_url.py" beforeDir="false" afterPath="$PROJECT_DIR$/access_url.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/db_utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/get_links_from_html.py" beforeDir="false" afterPath="$PROJECT_DIR$/get_links_from_html.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mappings.py" beforeDir="false" afterPath="$PROJECT_DIR$/mappings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/process_steps_game.py" beforeDir="false" afterPath="$PROJECT_DIR$/process_steps_game.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/process_tournament.py" beforeDir="false" afterPath="$PROJECT_DIR$/process_tournament.py" afterDir="false" />
@@ -43,13 +48,13 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "C:/Users/junio/Desktop/workspace/python/jonbet-bot"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/junio/Desktop/workspace/python/jonbet-bot&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\junio\Desktop\workspace\python\jonbet-develop" />
@@ -127,12 +132,31 @@
       <option name="project" value="LOCAL" />
       <updated>1733257249626</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="insercao no banco de dados">
+      <created>1733367817076</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1733367817076</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="teste" />
     <MESSAGE value="refactory" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactory" />
+    <MESSAGE value="insercao no banco de dados" />
+    <option name="LAST_COMMIT_MESSAGE" value="insercao no banco de dados" />
   </component>
 </project>
