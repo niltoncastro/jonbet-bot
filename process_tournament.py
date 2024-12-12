@@ -1,12 +1,14 @@
 import requests
 
 from display_message import display_message
+from log_writer import log_writer
 from process_steps_game import process_steps_game
 
 
 def process_tournament(url, codigo_liga):
-    """Faz download do JSON 'live' e processa os estados do jogo."""
+    # print("process_tournament")
 
+    """Faz download do JSON 'live' e processa os estados do jogo."""
     try:
         response = requests.get(url)
         if response.status_code == 200:
@@ -17,6 +19,8 @@ def process_tournament(url, codigo_liga):
                 if value.get("desc", {}).get("tournament") == codigo_liga:
                     process_steps_game(value, key, codigo_liga)
         else:
-            display_message(f"Erro ao acessar {url}, status code: {response.status_code}")
+            message = f"Erro ao acessar {url}, status code: {response.status_code}"
+            display_message(message)
+            log_writer(message)
     except Exception as e:
         display_message(f"Erro ao tentar baixar o conteúdo de {url}: {str(e)}")

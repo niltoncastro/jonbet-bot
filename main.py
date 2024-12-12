@@ -1,10 +1,12 @@
-from access_url import access_url
+from browser_automation import browser_automation
 
 
 def main():
-    # acessar torneio da venezuela
+    # print("main")
+
+    # acessar torneio da liga da venezuela
     url = "https://jonbet.com/pt/sports?bt-path=%2Ffifa%2Fvenezuela%2Fliga-futve-2361937986599399439"
-    access_url(url)
+    browser_automation(url)
 
 
 if __name__ == "__main__":
